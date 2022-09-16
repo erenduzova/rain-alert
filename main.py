@@ -1,6 +1,14 @@
 import requests
 import os
+from twilio.rest import Client
 
+# TWILIO VARIABLES
+account_sid = os.environ.get("TWILIO_SID")
+auth_token = os.environ.get("TWILIO_TOKEN")
+FROM_NUM = os.environ.get("TWILIO_FROM")
+TO_NUM = os.environ.get("TWILIO_TO")
+
+# OWM VARIABLES
 OWM_API_KEY = os.environ.get("OWM_API_KEY")
 PARAMETERS = {
     "lat": 45.815010,
@@ -21,4 +29,12 @@ for hour_d in next_12_data:
         will_rain = True
 
 if will_rain:
-    print("It's going to rain today. Remember to bring an ☂️")
+    client = Client(account_sid, auth_token)
+
+    message = client.messages \
+        .create(
+            body="It's going to rain today. Remember to bring an ☂️",
+            from_=FROM_NUM,
+            to=TO_NUM
+        )
+    print(message.status)
