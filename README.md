@@ -32,7 +32,7 @@ OWM_API_KEY = os.environ.get("OWM_API_KEY")
 ```
 
 ## Open Weather Map Parameters
-You can change lat(latitude) and lon(longitude) variables with your locations values. I used currently rainy location for testing.<br />
+You can change lat(latitude) and lon(longitude) variables with your location's values. I used currently rainy location for testing.<br />
 
 ```
 PARAMETERS = {
